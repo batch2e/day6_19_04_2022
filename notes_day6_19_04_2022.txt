@@ -226,6 +226,453 @@ public class Numbers{
 Output
 -2
 
+------------------------------------------------------------------
+
+class Customer {
+	private String customerId;
+	private String customerName;
+	private long contactNumber;
+	private String address;
+
+	public Customer(String customerId, String customerName, long contactNumber,
+			String address) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.contactNumber = contactNumber;
+		this.address = address;
+	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public long getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(long contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void displayCustomerDetails() {
+		System.out.println("Displaying customer details \n***********");
+		System.out.println("Customer Id : " + customerId);
+		System.out.println("Customer Name : " + customerName);
+		System.out.println("Contact Number : " + contactNumber);
+		System.out.println("Address : " + address);
+		System.out.println();
+	}
+	public double payBill(double totalPrice) {
+		double discountPercentage = 5;
+		System.out.println("Calculating final amount to be paid.....");
+		double priceAfterDiscount = totalPrice * (1 - (discountPercentage / 100));
+		return priceAfterDiscount;
+	}
+}
+public class Tester {
+	public static void main(String[] args) {
+		Customer customer1 = new Customer("C1001", "Sam", 9945000009L,
+				"Carolina Street, Springfield, 62702");
+		System.out.println("Final amount to be paid: $" +customer1.payBill(20));
+	}
+}
+
+//Q In the above example total price and discount price is taken local to the payBill method. Why so? They are not being taken 
+as instance variables.
+//A) You will get your answer if you can think what are attributes or properties of a customer through which we identify a Customer.
+ 
+Q Do you think a Customer is being identified with an attribute called totalPrice and discount?
+A) No. A customer can be identified with customer id, name, address , phone number but we never identify an attribute called
+  total price or discount on Price for a Customer. That is the reason we have not taken totalPrice and discount as a member of the
+  class.
+
+--------------------------------------------------
+Q We have a book class with bookId, desc, price , author name. We have to use Scanner for taking user input in setData method
+within the Book class. So what do you think Scanner should be an instance variable or local object to setData() method.
+
+public class Book {
+   private int bookId;
+   private String desc;
+  // private Scanner scan;
+   private float price;
+}
+
+We dont identify a Book with an attribute called Scanner. Scanner is a class whose object is used for a purpose. The purpose is
+to take user input. So we should take Scanner object local to the method which is responsible for taking user input.
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+class Customer {
+	private String customerId;
+	private String customerName;
+	private long contactNumber;
+	private String address;
+        private float deliveryCharge;
+
+	public Customer(String customerId, String customerName, long contactNumber,
+			String address) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.contactNumber = contactNumber;
+		this.address = address;
+                deliveryCharge=1.5f;
+	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public long getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(long contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void displayCustomerDetails() {
+		System.out.println("Displaying customer details \n***********");
+		System.out.println("Customer Id : " + customerId);
+		System.out.println("Customer Name : " + customerName);
+		System.out.println("Contact Number : " + contactNumber);
+		System.out.println("Address : " + address);
+		System.out.println();
+	}
+	public double payBill(double totalPrice) {
+		double discountPercentage = 5;
+		System.out.println("Calculating final amount to be paid.....");
+		double priceAfterDiscount = totalPrice * (1 - (discountPercentage / 100));
+		return priceAfterDiscount;
+	}
+}
+public class Tester {
+	public static void main(String[] args) {
+		Customer customer1 = new Customer("C1001", "Sam", 9945000009L,
+				"Carolina Street, Springfield, 62702");
+		System.out.println("Final amount to be paid: $" +customer1.payBill(20));
+	}
+}
+// So we want to have delivery charge but that charge is fixed for all the customers.
+// So instead of setting the value through parameterized constructor or through setter method, we can initialise with the
+ constant value within the constructor.
+
+// Requirement is we need to have same value for deliveryCharge. So instead of separate copies for the objects, we are going to
+// maintain a single copy of deliveryCharge. 
+
+So how it is possible to have a single copy of an object or a variable?
+A Declare that object or variable as static.
+
+class Customer {
+	private String customerId;
+	private String customerName;
+	private long contactNumber;
+	private String address;
+        private static float deliveryCharge;
+
+	public Customer(String customerId, String customerName, long contactNumber,
+			String address) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.contactNumber = contactNumber;
+		this.address = address;
+                deliveryCharge=1.5f;
+	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public long getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(long contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void displayCustomerDetails() {
+		System.out.println("Displaying customer details \n***********");
+		System.out.println("Customer Id : " + customerId);
+		System.out.println("Customer Name : " + customerName);
+		System.out.println("Contact Number : " + contactNumber);
+		System.out.println("Address : " + address);
+		System.out.println();
+	}
+	public double payBill(double totalPrice) {
+		double discountPercentage = 5;
+		System.out.println("Calculating final amount to be paid.....");
+		double priceAfterDiscount = totalPrice * (1 - (discountPercentage / 100));
+		return priceAfterDiscount;
+	}
+}
+public class Tester {
+	public static void main(String[] args) {
+		Customer customer1 = new Customer("C1001", "Sam", 9945000009L,
+				"Carolina Street, Springfield, 62702");
+		System.out.println("Final amount to be paid: $" +customer1.payBill(20));
+	}
+}
+  
+  So if the member variable is non static , then we have separate copies for each object but when it is static we 
+  have single copy of the variable which can be accessed by any object of the same class. 
 
 
 
+To create a static member variable, precede its declaration with the keyword static. When a member is declared static, it can be accessed before any object of the class is created and without reference to any object. 
+
+
+public class Numbers2 {
+  int num;
+  static int staticNum=10;
+ 
+}
+
+
+public class NumbersMain2 {
+
+	public static void main(String[] args) {
+	// A static member can be accessed with the
+		// class we dont require an object to 
+		// access a static member
+		System.out.println(Numbers2.staticNum);
+   // A non static member cannot be access with the 
+   // class , for accessing a non static member
+	// we have create the object of the class
+	// which is having the non static member
+		
+		// System.out.println(Numbers2.num);
+	   Numbers2 number=new Numbers2();
+	   System.out.println(number.num);
+	}
+
+}
+// An object can also of static. It is not only the primitive type.
+// We have only one copy of static member. 
+
+
+---------------------
+
+
+
+
+
+public class Numbers3{
+ int num;
+static int staticNum;
+
+static{
+ staticNum=100;
+}
+ 
+}
+
+
+public class NumbersMain3 {
+
+	public static void main(String[] args) {
+	// A static member can be initialised at
+	// the place of declaration
+	// static int num=10;
+	// another way is thru static block
+   // static {
+		   //num=10;
+		//}
+		System.out.println(Numbers3.staticNum);
+        Numbers3.staticNum=1000;
+        System.out.println(Numbers3.staticNum);
+		// System.out.println(Numbers2.num);
+	   Numbers3 number=new Numbers3();
+	   System.out.println(number.num);
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+public class Numbers4{
+ int num;
+static int staticNum;
+
+static{
+ staticNum=100;
+ System.out.println("static block is called");
+}
+ 
+Numbers4(int num, int num2){
+  this.num=num;
+  this.staticNum=num2;
+  System.out.println("I am the parameterized constructor");
+}
+
+void dispData(){
+  System.out.println(num);
+  System.out.println(staticNum);
+}
+}
+
+
+public class NumbersMain4{
+    public static void main(String args[]) {
+      Numbers4 num1=new Numbers4(1,200);
+      Numbers4 num2=new Numbers4(2,300);
+      num1.dispData();
+      num2.dispData();
+    }
+ }
+
+-----------------------------------------------------
+Q How we can access the static variables with methods?
+A we can access them with static method( Which we usually do but static variables can be accessed through non static methods also)
+
+
+public class Numbers5{
+ int num;
+static int staticNum;
+
+static{
+ staticNum=100;
+ System.out.println("static block is called");
+}
+ 
+Numbers5(int num, int num2){
+  this.num=num;
+  this.staticNum=num2;
+  System.out.println("I am the parameterized constructor");
+}
+
+void dispData(){
+  System.out.println(num);
+  System.out.println(staticNum);
+}
+}
+
+
+public class NumbersMain5{
+    public static void main(String args[]) {
+      Numbers5 num1=new Numbers5(1,200);
+      Numbers5 num2=new Numbers5(2,300);
+      num1.dispData();
+      num2.dispData();
+    }
+ }
+// In the above example dispData is a non static method and it is accessing the static and non static members.
+
+Q Can a static method access a non static variable and static variable?
+A a static method can access a static member but to access non static member, we have to create the object the object of
+the class which is having the non static member.
+
+
+public class Numbers6{
+ int num;
+static int staticNum;
+
+static{
+ staticNum=100;
+ System.out.println("static block is called");
+}
+ 
+Numbers6(int num, int num2){
+  this.num=num;
+  this.staticNum=num2;
+  System.out.println("I am the parameterized constructor");
+}
+
+void dispData(){
+  System.out.println(num);
+  //System.out.println(staticNum);
+}
+
+static void dispStaticData(){
+  //System.out.println(num);
+  // Number6 number=new Number6();
+  //System.out.println(number.num);
+   System.out.println(staticNum);
+}
+
+}
+
+
+public class NumbersMain6{
+    public static void main(String args[]) {
+      Numbers6 num1=new Numbers6(1,200);
+      Numbers6 num2=new Numbers6(2,300);
+      num1.dispData();
+      num2.dispData();
+      Numbers6.dispStatic();
+    }
+ }
+
+// In the above example non static method dispData() can access both static and non static member but it is good to 
+access non static member from a non static method.
+// A static method cannot access a non static member until unless we create an object of the class , In our example we
+// created an object of the class Number6 in dispStaticData() method which is a static method and accessed the non static
+variable.
+---------------------------------------------------------------------------------------------------------------------------
+Points for static members:
+* a method and member variable can be declared as static.
+* outer class cannot be declared as static.
+  The below declaration is not possible  
+   public static class Data{}
+* The inner class can be a static class.
+   public class Data{
+     public static class Data2{}
+    }
+* static block is used to initialise static member variable of a class.
+* static variable can be of primitive or of reference type.
+* static block is called once.
+* static method can access any other static method or static variable.
+* static method can access non static member after creating the object of the class where the non static member is declared.
+* non static method can access both static and non static member. 
+* Though static member can be accessed with object but we should access static member with the class name.
+--------------------------------------------------------------------------------------------------------------------------
+Create a code to count the number of objects created.
+ 
+  public class Customer {
+
+
+  }
+
+  public class CustomerMain{
+
+    public static void main(String args[]){
+     Customer cust=new Customer();
+     Customer cust2=new Customer();
+     System.out.println(Customer.countObject()); //2
+     Customer cust3=new Customer();
+     System.out.println(Customer.countObject()); //3
+   }
+ }
+  
