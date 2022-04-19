@@ -1,0 +1,231 @@
+
+
+
+
+Q Enter 10 numbers and perform addition of those 10 numbers.
+
+ Writing a code following procedural approach.
+
+
+ int main(){
+   int num[10];
+   int ctr;
+   for(ctr=0;ctr<10;ctr++){
+   }
+  }
+   
+Observation:
+* main is not within a class. 
+
+Q Can we have exactly same kind of code in java(without a class)?
+A No. We have to write the main within a class.
+
+class Main1{
+   public static void main(String args[]) {
+    int num[]=new int[10];
+    int sum=0;
+    Scanner scan=new Scanner(System.in);
+    for(int i=0;i<num.length;i++){
+     System.out.println("Enter the number");
+     num[i]=scan.nextInt();
+     sum+=num[i];
+    }
+    System.out.println(sum);
+  }
+}
+Observations:-
+* main method is within a class and that is mandatory in java.
+* We have worked with local variables/objects. Local variables are those which are created in a block scope. Like num, sum,i
+  and scan which is an object of class Scanner. So main is the method and all the mentioned variables and objects are local to main.
+
+Q Can I write this logic of adding numbers in a separate method other than main?
+A Yes. S
+
+class Main2{
+
+   public static int add(int n[]){
+     int sum=0;
+   for(int i=0;i<n.length;i++){
+       sum+=n[i];
+     }
+     return sum;    
+
+   }
+
+   public static void main(String args[]) {
+    //int num[]={11,15,23,45,67,89,80};
+    int num[]=new int[10];
+    
+    Scanner scan=new Scanner(System.in);
+   for(int i=0;i<num.length;i++){
+     System.out.println("Enter the number");
+     num[i]=scan.nextInt();
+
+    }
+     int sm=add(num);
+    System.out.println(sm);
+    // System.out.println(add(num));
+  }
+}
+ 
+So why in the above code add is again a static method. 
+Ans : A static method can call only other static method without the object. 
+Observations:
+* int num[] is local to main method.
+* scan is local to main method.
+* i is local to main method.
+* sm is local to main method.
+* int n[] parameter is local to add method.
+* sum is local to add method.
+-----------------------------------------------------------------------------------------------------------  
+-------------------------------------------------------------------------------------------------------------------------
+Q Can we implement the above code by planning with Object oriented approach where we will declare the num array and sum 
+as instance variables and that too in a single class and we wont be making the add method as static.
+A Yes
+
+class Main3{
+  private int num[];
+  private int sum;
+
+ public void setNum(int num[])
+  {
+     this.num=num;
+  }
+
+ public int add(){
+   
+    for(int i=0;i<num.length;i++){
+       sum+=num[i];
+     }
+     return sum;   
+   }
+
+public static void main(String args[]) {
+    Main3 m=new Main3();
+    int num[]=new int[10];
+    Scanner scan=new Scanner(System.in);
+   for(int i=0;i<num.length;i++){
+     System.out.println("Enter the number");
+     num[i]=scan.nextInt();
+
+    }
+     m.setNum(num);
+     int sm=m.add();
+    System.out.println(sm);
+  }
+
+}
+As in the above code add is non static we need to create an object of the class where add is and then we can access add
+with the object reference.
+Observations:
+* add is non static.
+* setNum is non static.
+* setNum is with array as a parameter.
+* num is local to main
+* another num is an instance variable of class Main3.
+* sum is an instance variable of class Main3.
+* sm is local to main method.
+* i is local to main method.
+* i is local to add method also.
+* int num[] local to setNum method.
+* sum is not initialised with 0 explicitly. The default constructor will initialise sum with the value 0.
+
+-------------------------------------------------------------------------------------------------------------
+Q Can we have two separate classes, one for the logic with number and another having the main method and that too in different files?
+A Yes
+
+Number.java
+
+public class Number{
+  private int num[];
+  private int sum;
+
+ public void setNum(int num[])
+  {
+     this.num=num;
+  }
+
+ public int add(){
+   
+    for(int i=0;i<num.length;i++){
+       sum+=num[i];
+     }
+     return sum;   
+   }
+}
+
+
+Main4.java
+public class Main4 {
+public static void main(String args[]) {
+    Number number=new Number();
+    int num[]=new int[10];
+    Scanner scan=new Scanner(System.in);
+   for(int i=0;i<num.length;i++){
+     System.out.println("Enter the number");
+     num[i]=scan.nextInt();
+
+    }
+     number.setNum(num);
+     int sm=number.add();
+    System.out.println(sm);
+  }
+
+}
+The above code is with two different classes and that too by following the object oriented concept.
+Observations:
+* int num[] in 3 places. local to main method. local to setNum method as a parameter and as instance variable of class Number.
+* sm,i,scan are local to main method.
+* sum is an instance variable of class Number. i is local variable to method add. 
+------------------------------------------------------------------------------------------------------------
+
+Write a code to find out the minimum number out of the 10 numbers.
+
+public class Numbers{
+      private int num[];
+      private int min;
+	public int[] getNum() {
+		return num;
+	}
+	public void setNum(int[] num) {
+		this.num = num;
+	}
+	public int getMin() {
+		min=num[0];
+		for(int i=0;i<num.length;i++)
+		{
+			if(num[i]<min)
+			{
+				min=num[i];
+			}
+		}
+		return min;
+	}
+
+   //setter/getters
+
+   
+
+ public class NumbersMain{
+    public static void main(String[] args){
+    int num[]={100,2,2,4,8,20,30,67,9,10};
+    Numbers numbers=new Numbers();
+    numbers.setNum(num);
+    int min=numbers.getMin();
+    System.out.println("The numbers are");
+    num=numbers.getNum();
+    for(int n : num)
+    {
+    	System.out.println(n);
+    }
+    
+    System.out.println("The minimum value "+min);
+   }
+  }
+ 
+Output
+-2
+
+
+
+
