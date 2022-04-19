@@ -659,7 +659,6 @@ Points for static members:
 * Though static member can be accessed with object but we should access static member with the class name.
 --------------------------------------------------------------------------------------------------------------------------
 Create a code to count the number of objects created.
- 
   public class Customer {
    private int id;
    private String name;
@@ -673,9 +672,7 @@ Create a code to count the number of objects created.
       public static int countObject(){
        return count;
       }
-     
-
-  }
+   }
 
   public class CustomerMain{
 
@@ -687,4 +684,125 @@ Create a code to count the number of objects created.
      System.out.println(Customer.countObject()); //3
    }
  }
-  
+  // the static members get the default value if not initialised. So in the above example count gets the initial value of 0
+as it is of int type.
+------------------------------------------------------------------------------------------------------------------------
+
+The first relationship that you will see is Aggregation which is also known as Has-a relationship. This kind of relationship exists between two classes when a reference variable of one class is a member variable in another class. Consider the below examples. 
+
+
+public class Department {
+private int deptId;
+private String deptName;
+private Employee manager;
+public int getDeptId() {
+	return deptId;
+}
+public void setDeptId(int deptId) {
+	this.deptId = deptId;
+}
+public String getDeptName() {
+	return deptName;
+}
+public void setDeptName(String deptName) {
+	this.deptName = deptName;
+}
+public Employee getManager() {
+	return manager;
+}
+public void setManager(Employee manager) {
+	this.manager = manager;
+}
+
+}
+
+
+}
+
+public class Employee {
+private int id;
+private String name;
+private String number;
+private String address;
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getNumber() {
+	return number;
+}
+public void setNumber(String number) {
+	this.number = number;
+}
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
+
+}
+
+public class DepartmentEmpMain {
+
+	public static void main(String[] args) {
+	 Employee emp=new Employee();
+	 Department dept=new Department();
+	 
+	 emp.setId(111);   // int
+	 emp.setName("Naveen");   // String
+	 emp.setNumber("98765454353");   // String
+	 emp.setAddress("A/122 , Chennai");   // String
+	 
+	 
+	 
+	 dept.setDeptId(1);  // int
+	 dept.setDeptName("HR");  // String
+	 
+	 dept.setManager(emp); // It is an address of Employee object   
+	 
+	 System.out.println(dept.getDeptId());   // int
+	 System.out.println(dept.getDeptName());  // String
+	 //System.out.println(dept.getManager());
+	 Employee emp1=dept.getManager();        // Employee
+	 System.out.println(emp1.getId());      // int
+	 System.out.println(emp1.getName());    // String
+	 System.out.println(emp1.getAddress());   // String
+       // System.out.println(dept.getManager().getId());
+       // System.out.println(dept.getManager().getName());
+       // System.out.println(dept.getManager().getAddress());
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------
+
+  Design two classes Person and Name
+
+  Person class will be having age and name
+  Name class will have firstName, middleName and lastName  
+
+   age====>int
+   name===>Name( It will be a user defined class)
+   firstName===> String
+   middleName===> String
+   lastName=====> String
+
+
+  public class Name {}
+  public class Person {}
+  public class PersonMain {
+   public static void main(String[] args){
+ 
+   }
+  }
+   
+---------------------------------------------------------------------------------------------------------
