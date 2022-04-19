@@ -797,12 +797,79 @@ public class DepartmentEmpMain {
    lastName=====> String
 
 
-  public class Name {}
-  public class Person {}
+  public class Name {
+    private String firstName;
+    private String middleName;
+    private String lastName;
+
+    // setters/getters
+
+    public void setFirstName(String firstName){
+      this.firstName=firstName;
+    }
+  }
+  public class Person {
+   private int age;
+   private Name name;
+  
+   // setters/getters
+
+ 
+  }
   public class PersonMain {
    public static void main(String[] args){
+       Name name=new Name();
+       Person person=new Person();
+       
+       name.setFirstName("Rajiv");
+       name.setMiddleName("Kumar");
+       name.setLastName("Sharma");
+      
+        person.setAge(23);
+        person.setName(name);
+        System.out.println(person.getAge());
+        name=person.getName();
+        System.out.println(name.getFirstName());
+        System.out.println(name.getMiddleName());
+        System.out.println(name.getLastName());
  
    }
   }
-   
----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+We have Customer . Customer is having id which is of type int, Customer is having a Name. Name is further having firstName and
+middlename and lastName. Customer is having Address and address is having hno which is an int. Street name which is a String
+City Name which is again a String.
+  public class Customer {}
+  public class Name     {}
+  public class Address  {}
+  public class CustomerMain  {
+   public static void main(String args[]){
+   }
+  }
+Testcase
+Enter the customer id
+1
+Enter the customer's Firstname
+Ravi
+Enter the customer's Middlename
+Kumar
+Enter the customer's Lastname
+Sharma
+Enter the house number
+3
+Enter the streetname
+street1
+Enter the city name
+Bangalore
+The details are
+ID : 1
+FIRSTNAME : Ravi
+MIDDLENAME : Kumar
+LASTNAME   : Sharma
+Address:
+HNO:1
+STREET NAME: street1
+CITY: Bangalore
+
+
+
