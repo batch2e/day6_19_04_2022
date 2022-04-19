@@ -981,3 +981,97 @@ Driver drives a Car
 
 Aggregation is has-a relationship which is being shown as a instance or object is a member of another class.
 Association is use-a relationship where an object of one class used or declared in a method or action or process of another class.
+-----------------------------------------------------------------------------------------------------------------------------------
+Inheritance is having is-a relationship
+We want to keep the details for Employees . We have two types: Casual and Permanent. So for the types we require id,name,dateOfBirth
+but for Casual employee we require noOfHoursWorked and for PermanentEmployees hra, da.
+
+  public class CasualEmployee{
+   private int id;
+   private String name;
+   private String dateOfBirth;
+   private int noOfHoursWorked;
+
+   setter/getters method
+   }
+
+   public class PermanentEmployee{
+    private int id;
+    private String name;
+    private String dateOfBirth;
+    private float hra;
+    private float da;
+    setters/getters method
+   }
+
+// We have redundancy in the form of attributes as id,name and dateOfBirth attributes are repeated in both the classes.
+// Is there any way out to reduce this redundancy in coding ?
+A Yes. We can go for inheritance.
+ We can create Parent/Base class/Super class and we can create Child/Derived class/sub class. The child class will extend the Parent
+  class. 
+
+  public class Employee1 {
+   private int id;
+   private String name;
+   private String dateOfBirth;
+  
+   //setters/getters 
+  }
+
+ public class CasualEmployee1 extends Employee1{
+   private int noOfHours;
+  // setter/getters
+ }
+
+ public class PermanentEmployee1 extends Employee1{
+   private float hra;
+   private float da;
+   // setter/getters
+}
+
+public class EmployeeMain1 {
+   public static void main(String args[]){
+    Employee1 emp=new Employee1();
+    emp.setId(111);
+    emp.setName("Arvind");
+    emp.setDateOfBirth("1-Jan-1981");
+    System.out.println("------------Employee-------------------------");
+    System.out.println(emp.getId());
+    System.out.println(emp.getName());
+    System.out.println(emp.getDateOfBirth());
+    System.out.println("--------------------Casual Employee--------------------------");
+    CasualEmployee1 ce=new CasualEmployee1();
+    //ce.id=1; // id is a private member of the Employee class and private members are not inherited by the Derived class
+    ce.setId(1); // setId is a public method in the Employee class and so it can be inherited by the CasualEmployee class.
+    ce.setName("Ratul");
+    ce.setDateOfBirth("10-June-1980");
+    ce.setNoOfHours(100);
+    System.out.println(ce.getId());
+    System.out.println(ce.getName());
+    System.out.println(ce.getDateOfBirth());
+    System.out.println(ce.getNoOfHours());
+    System.out.println("------------Permanent Employee----------------");
+    PermanentEmployee1 pe=new PermanentEmployee1();
+    pe.setId(2);
+    pe.setName("Sunny");
+    pe.setDateOfBirth("14-Feb-1979");
+    pe.setHra(10);
+    pe.setDa(70);
+    System.out.println(pe.getId());
+    System.out.println(pe.getName());
+    System.out.println(pe.getDateOfBirth());
+    System.out.println(pe.getHra());
+    System.out.println(pe.getDa());
+   }
+ }
+
+
+ // Sp we have declared id,name and dateOfBirth as private. So are the private members accessible by the derived classes?
+A, No. The private members of the Parent class is not accessible by the Derived class.
+
+// Then how we are going to access them in the derived classes?
+A Either we make the members as protected or we keep them as private and try to access with the help of default/public methods.
+
+----------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+ 
