@@ -870,6 +870,114 @@ Address:
 HNO:1
 STREET NAME: street1
 CITY: Bangalore
+-----------------------------------------------------------------------------------------------------------------------------------
+Aggregation is HAS-A Relationship
+
+Employee is having a Credit Card.
+Person is having a Car.
+Tourist is having a Passport and Visa.
+Employee is having a Bank Account
+-----------------------------------------------------------------------------------------------------------------------------
+Association, also known as uses-a relationship exists between two classes when one object makes use of another object for its functionality. Here, both the objects can exist independently. 
+
+Patient makes an Appointment
+
+   public class Patient {
+     private int age;
+     private Name name;
+     private Address address;
+       //setter/getter for age,name and address
+        public Appointment makeAppointment(){
+            Appointment appointment=new Appointment();
+            appointment.setId("0001");
+            appointment.setDate("19-Apr-2022");
+            return appointment;
+        }
+
+     
+    }  
+
+    public class Appointment {
+     private String appointmentId;
+     private String appointmentDate;
+ 
+      setter/getter methods
+
+     }
+    
+
+    public class Hospital  {
+     public static void main(String args[]) {
+         Patient patient=new Patient();
+         Name name=new Name();
+         Address address=new Address();
+         patient.setAge(60);
+         name.setFirstName("");
+         name.setMiddleName("");
+         name.setLastName("");
+         patient.setName(name);
+         address.setHno(1);
+         address.setStreetName("");
+         address.setCity("");
+         patient.setAddress(address);
+         Appointment appointment=patient.makeAppointment();
+         System.out.println(patient.getAge());
+         name=patient.getName();
+         System.out.println(name.getFirstName());
+         System.out.println(name.getMiddleName());
+         System.out.println(name.getLastName());
+         address=patient.getAddress();
+         System.out.println(address.getHno());
+         System.out.println(address.getStreetName());
+         System.out.println(address.getCity());
+         System.out.println(appointment.getAppointmentId());
+         System.out.println(appointment.getAppointmentDate());
+     }
+  }
 
 
+---------------------------------------------------------------------------------------------------------------------------------
+Driver drives a Car
 
+  public class Car {
+   private String model;
+   private String color;
+  
+   // setter/getter methods
+}
+
+
+  public class Driver {
+   private int age;
+   private Name name;
+ 
+    public void drive(Car car){
+      
+     System.out.println(car.getModel());
+     System.out.println(car.getColor());
+     String firstName=name.getFirstName();
+     System.out.println(firstName+"is driving the model "+car.getModel()+" for last 15 years"); 
+    }
+   //setter/getters methods   
+  }
+
+   public class CarMain{
+     public static void main(String args[]) {
+      Car car=new Car();
+      Name name=new Name();
+      car.setModel("");
+      car.setColor("");
+      name.setFirstName("");
+      name.setMiddleName("");
+      name.setLastName("");
+      Driver driver=new Driver();
+      driver.setAge();
+      driver.setName(name);
+      driver.drive(car);
+     }
+   }
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Aggregation is has-a relationship which is being shown as a instance or object is a member of another class.
+Association is use-a relationship where an object of one class used or declared in a method or action or process of another class.
