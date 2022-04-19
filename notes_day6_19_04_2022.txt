@@ -661,7 +661,19 @@ Points for static members:
 Create a code to count the number of objects created.
  
   public class Customer {
+   private int id;
+   private String name;
+   private String address;
+   private static int count;
 
+      public Customer(){
+       count++;
+      }
+
+      public static int countObject(){
+       return count;
+      }
+     
 
   }
 
